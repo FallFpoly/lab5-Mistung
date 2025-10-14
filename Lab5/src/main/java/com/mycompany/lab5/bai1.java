@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class bai1 {
     public static void main(String[] args) {
         ArrayList<Double> list = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
+        Scanner sc =new Scanner(System.in);
 
         while (true) {
             System.out.print("Nhập số thực: ");

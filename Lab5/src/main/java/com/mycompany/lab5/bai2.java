@@ -1,4 +1,3 @@
-
 package com.mycompany.lab5;
 
 import java.util.ArrayList;
