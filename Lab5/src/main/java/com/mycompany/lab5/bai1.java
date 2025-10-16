@@ -7,20 +7,20 @@ import java.util.Scanner;
 public class bai1 {
     public static void main(String[] args) {
         ArrayList<Double> list = new ArrayList<>();
-        Scanner sc =new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         while (true) {
             System.out.print("Nhập số thực: ");
             while (!sc.hasNextDouble()) {
                 System.out.print("Giá trị không hợp lệ. Vui lòng nhập số thực: ");
-                sc.next(); 
+                 sc.next(); 
             }
             double x = sc.nextDouble();
             list.add(x);
             sc.nextLine(); 
 
             System.out.print("Nhập thêm (Y/N)? ");
-            String answer = sc.nextLine();
+            String answer = sc.nextLine().trim();
             if (answer.equalsIgnoreCase("N")) {
                 break;
             }
@@ -35,7 +35,6 @@ public class bai1 {
         for (Double number : list) {
             sum += number;
         }
-
-        System.out.println("Tổng các số thực: " + sum);
+ System.out.printf("Tổng các số thực: %.2f\n", sum);
     }
 }

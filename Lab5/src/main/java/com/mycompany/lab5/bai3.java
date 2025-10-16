@@ -1,8 +1,6 @@
 package com.mycompany.lab5;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 class SanPham {
@@ -16,13 +14,12 @@ class SanPham {
 
     @Override
     public String toString() {
-        return "Tên sản phẩm: " + ten + " | Đơn giá: " + donGia;
+        return "Tên sản phẩm: " + ten + " | Đơn giá: " + String.format("%.2f", donGia);
     }
 }
 
 public class bai3 {
-
-    static ArrayList<SanPham> danhSachSP = new ArrayList<>();
+static ArrayList<SanPham> danhSachSP = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -31,31 +28,24 @@ public class bai3 {
             System.out.print("Chọn chức năng: ");
             int chon;
             try {
-                chon = Integer.parseInt(sc.nextLine());
+                chon = Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Vui lòng nhập số từ 1 đến 5!");
                 continue;
             }
 
             switch (chon) {
-                case 1:
-                    nhap();
-                    break;
-                case 2:
-                    sapXepGiamDan();
-                    break;
-                case 3:
-                    timVaXoa();
-                    break;
-                case 4:
-                    tinhGiaTrungBinh();
-                    break;
-                case 5:
+                case 1 -> nhap();
+                case 2 -> sapXepGiamDan();
+                case 3 -> timVaXoa();
+                case 4 -> tinhGiaTrungBinh();
+                case 5 -> {
                     System.out.println("Kết thúc chương trình.");
+                    sc.close();
                     return;
-                default:
-                    System.out.println("Vui lòng chọn từ 1 đến 5.");
-            }
+                }
+                default -> System.out.println("Vui lòng chọn từ 1 đến 5.");
+        }
         }
     }
 
@@ -71,12 +61,12 @@ public class bai3 {
     public static void nhap() {
         while (true) {
             System.out.print("Nhập tên sản phẩm: ");
-            String ten = sc.nextLine();
+            String ten = sc.nextLine().trim();
 
             System.out.print("Nhập đơn giá: ");
-            double gia;
+ double gia;
             try {
-                gia = Double.parseDouble(sc.nextLine());
+                gia = Double.parseDouble(sc.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Đơn giá không hợp lệ! Nhập lại.");
                 continue;
@@ -85,7 +75,7 @@ public class bai3 {
             danhSachSP.add(new SanPham(ten, gia));
 
             System.out.print("Nhập thêm sản phẩm (Y/N)? ");
-            String ans = sc.nextLine();
+            String ans = sc.nextLine().trim();
             if (ans.equalsIgnoreCase("N")) {
                 break;
             }
@@ -98,16 +88,8 @@ public class bai3 {
             return;
         }
 
-        Comparator<SanPham> comp = new Comparator<SanPham>() {
-            @Override
-            public int compare(SanPham o1, SanPham o2) {
-                return o2.donGia.compareTo(o1.donGia); // Giảm dần
-            }
-        };
-
-        Collections.sort(danhSachSP, comp);
-
-        System.out.println("Danh sách sản phẩm sau khi sắp xếp giảm dần theo giá:");
+        danhSachSP.sort((o1, o2) -> o2.donGia.compareTo(o1.donGia));
+  System.out.println("Danh sách sản phẩm sau khi sắp xếp giảm dần theo giá:");
         for (SanPham sp : danhSachSP) {
             System.out.println(sp);
         }
@@ -120,7 +102,7 @@ public class bai3 {
         }
 
         System.out.print("Nhập tên sản phẩm cần xóa: ");
-        String tenXoa = sc.nextLine();
+        String tenXoa = sc.nextLine().trim();
         boolean found = false;
 
         for (int i = 0; i < danhSachSP.size(); i++) {
@@ -131,8 +113,7 @@ public class bai3 {
                 break;
             }
         }
-
-        if (!found) {
+ if (!found) {
             System.out.println("Không tìm thấy sản phẩm cần xóa.");
         }
     }
@@ -149,6 +130,6 @@ public class bai3 {
         }
 
         double trungBinh = tong / danhSachSP.size();
-        System.out.println("Giá trung bình của các sản phẩm là: " + trungBinh);
+        System.out.printf("Giá trung bình của các sản phẩm là: %.2f\n", trungBinh);
     }
 }

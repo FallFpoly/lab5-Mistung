@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class bai2 {
 
     static ArrayList<String> danhSach = new ArrayList<>();
-    static Scanner sc = new Scanner(System.in);
+    static Scanner sc=new Scanner(System.in);
 
     public static void main(String[] args) {
         while (true) {
